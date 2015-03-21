@@ -77,8 +77,21 @@ FastTrackIT 2015
                  }
              }
          }
+        function changeTheme(cssFile, cssLinkIndex) {
+            var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+            var newlink = document.createElement("link");
+            newlink.setAttribute("rel", "stylesheet");
+            newlink.setAttribute("type", "text/css");
+            newlink.setAttribute("href", cssFile);
+            document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+
+
+        }
 
     </script>
+
+
+
 
   </head>
 
@@ -89,7 +102,27 @@ FastTrackIT 2015
   <div id="header">
       <div id="sitebranding">
           <!--<h1>FastTrackIT.org</h1>-->
-          <img src="img/cola.png" height="70">
+          <img src="img/cola.png" height="90" >
+      </div>
+
+
+
+      <div id="theme-picker">
+
+          <p>Choose theme:</p>
+          <!--<form action="action_page.php">-->
+              <!--<select name="theme" >-->
+                  <!--<option value="default" onselect="changeTheme('numguessstyle.css', 0)">Default</option>-->
+                  <!--<option value="Coca-cola"  onselect="changeTheme('Coca-cola.css', 0)">Coca-Cola</option>-->
+              <!--</select>-->
+              <!--<br><br>-->
+          <!--</form>-->
+          <a href="#" onclick="changeTheme('numguessstyle.css', 0)">Default </a>
+          <a href="#" onclick="changeTheme('Coca-cola.css', 0)">Cola </a>
+
+
+
+
       </div>
       <div id="tagline">
           <p>Welcome to our first Lesson !</p>
@@ -123,6 +156,8 @@ FastTrackIT 2015
       <a href="javascript:guessLink(9)">It could be 9</a></br>
       <a href="javascript:guessLink(10)">It could be 10</a></br>
   </div>
+
+
 
   </body>
 </html>
