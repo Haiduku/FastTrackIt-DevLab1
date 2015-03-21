@@ -1,0 +1,111 @@
+/* 
+didactic purposes
+Some items are intentionally not optimized or not coded in the right way
+FastTrackIT 2015,
+version 1.0
+*/
+
+body {
+    background-color: #ff231c;
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    line-height: 125%;
+    padding: 0;
+    margin: 0;
+}
+
+
+h1 {
+    font-size: large;
+    background-color: cornflowerblue;
+    color: white;
+    padding-top: 2em;
+    padding-bottom: .2em;
+    padding-left: .4em;
+    margin: 0;
+}
+
+#tagline p {
+    font-style: italic;
+    font-family: Georgia, Times, serif;
+    background-color: #bed8f3;
+    border-top: 3px solid #7da5d8;
+    border-bottom: 3px solid #7da5d8;
+    padding-top: .2em;
+    padding-bottom: .2em;
+    padding-left: .8em;
+    margin: 0;
+}
+
+#header {
+    position: absolute;
+    border-top: 3px solid #7da5d8;
+    width: 100%;
+    background-color: white;
+}
+
+#navigation {
+    position: absolute;
+    top: 110px;
+    width: 110px;
+    height: 180px;
+    background-color: white;
+    color:black;
+    padding-left: .8em;
+;
+}
+
+#bodycontent {
+    position: absolute;
+    left: 140px;
+    top: 120px;
+    padding-top:.4em;
+    padding-left:2em;
+}
+
+#postcontent {
+    position: absolute;
+    left: 360px;
+    top: 110px;
+    width: 120px;
+    height:180px;
+    background-color: white;
+    color:black;
+    padding-left: .8em;
+;
+}
+
+#serverResponse {
+    color:red;
+    position: absolute;
+    top: 210px;
+    left: 140px;
+    width: 200px;
+    background-color: floralwhite;
+    color: blue;
+    padding-left: .8em;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* padding - between border and text -*/
+
+
+/* class selector*/
+.test {
+    color: #aa0044;
+}
+
+.highlight {
+    border-width: 10px;
+    border-style: inset;
+    border-color: #999999;
+}
