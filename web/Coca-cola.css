@@ -46,6 +46,7 @@ h1 {
 #navigation {
     position: absolute;
     top: 130px;
+    left: 20px;
     width: 110px;
     height: 180px;
     background-color: white;
@@ -64,7 +65,7 @@ h1 {
 
 #postcontent {
     position: absolute;
-    left: 360px;
+    left: 380px;
     top: 130px;
     width: 120px;
     height:180px;
@@ -73,26 +74,17 @@ h1 {
     padding-left: .8em;
 ;
 }
+#theme-picker{
+    margin-left: 400px;
+}
+#theme-picker a{
+    text-decoration: none;
+}
 #sitebranding {
-    /*position: absolute;*/
-    /*left: 860px;*/
-    /*top: 0px;*/
-    /*height:80px;*/
     background-color: white;
     color: black;
     padding-left: .8em;
     float: left;
-}
-
-#theme-picker {
-    /*position: absolute;*/
-    /*left: 860px;*/
-    /*top: 0px;*/
-    /*height:80px;*/
-    background-color: white;
-    color:black;
-    padding-left: .8em;
-    /*float: left;*/
 }
 #serverResponse {
     color:red;
@@ -128,4 +120,10 @@ h1 {
     border-width: 10px;
     border-style: inset;
     border-color: #999999;
+}
+.cola{
+    display: block;
+}
+.default{
+    display: none;
 }
