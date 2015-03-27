@@ -45,7 +45,7 @@ FastTrackIT 2015
             xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange=callback;
             var url ="NumGenServlet"+"?requestGuessNumber="+givenValue;
-            document.getElementById("number").value = givenValue;
+            console.info(url);
             xmlHttp.open("GET",url,true);
             xmlHttp.send();
         }
@@ -55,7 +55,7 @@ FastTrackIT 2015
                  var jSonMessage = JSON.parse(xmlHttp.responseText);
                  var keyRestartGame=jSonMessage.keyRestartGame;
                  if (keyRestartGame != undefined && keyRestartGame.length > 0) {
-                     alert("Restart cu succes, jocul a reinceput!");
+//                     alert("Restart cu succes, jocul a reinceput!");
                      document.getElementById("number").value="";
                      return;
                  }
@@ -72,14 +72,14 @@ FastTrackIT 2015
                  if(keySuccess=="false") {
                      if (keyHint == "higher")
 
-                         document.getElementById("serverResponse").innerHTML = "WRONG, Try a Higher one!. The input number was " + document.getElementById("number").value + ". This is your  "+keyNrGuesses + " try!";
+                         document.getElementById("serverResponse").innerHTML = "WRONG, Try a Higher one!. The input number was " + jSonMessage.inputNumber +". This is your  "+keyNrGuesses + " try!";
                      else if (keyHint == "lower")
-                         document.getElementById("serverResponse").innerHTML = "WRONG, Try a Lower one! The input number was  " + document.getElementById("number").value+ ". This is your  "+keyNrGuesses + " try!";
+                         document.getElementById("serverResponse").innerHTML = "WRONG, Try a Lower one! The input number was  " + jSonMessage.inputNumber + ". This is your  "+keyNrGuesses + " try!";
                  }
                  else
                  if(keySuccess=="true")
                  {
-                     document.getElementById("serverResponse").innerHTML = "Congrats, you guessed the number " + document.getElementById("number").value + " after " + keyNrGuesses + " guesses.";
+                     document.getElementById("serverResponse").innerHTML = "Congrats, you guessed the number " + jSonMessage.inputNumber + " after " + keyNrGuesses + " guesses.";
                      //document.getElementById("serverResponse").innerText="";
                      xmlHttp = new XMLHttpRequest();
                      //xmlHttp.onreadystatechange=callback;
@@ -89,12 +89,32 @@ FastTrackIT 2015
                  }
              }
          }
-        function changeTheme(cssFile, cssLinkIndex) {
-            var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+//        function changeTheme(cssFile, cssLinkIndex) {
+//            var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+//            var newlink = document.createElement("link");
+//            newlink.setAttribute("rel", "stylesheet");
+//            newlink.setAttribute("type", "text/css");
+//            newlink.setAttribute("href", cssFile);
+//            document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+
+//
+//        }
+
+
+        function changeTheme(){
+            var x = document.getElementById("theme").value;
+            var oldlink = document.getElementsByTagName("link").item(0);
             var newlink = document.createElement("link");
             newlink.setAttribute("rel", "stylesheet");
             newlink.setAttribute("type", "text/css");
-            newlink.setAttribute("href", cssFile);
+            if(x == "default") {
+                newlink.setAttribute("href", "numguessstyle.css");
+            }
+            else {
+                if(x == "cola"){
+                    newlink.setAttribute("href", "Coca-cola.css");
+                }
+            }
             document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
 
 
@@ -122,9 +142,14 @@ FastTrackIT 2015
 
       <div id="theme-picker">
 
-          <p>Choose theme:</p>
-          <a href="#" onclick="changeTheme('numguessstyle.css', 0)">Default </a>
-          <a href="#" onclick="changeTheme('Coca-cola.css', 0)"> Cola </a>
+          <p>Select theme</p>
+          <select id="theme" onchange="changeTheme()">
+              <option value="default">Default</option>
+              <option value="cola">Coca-Cola</option>
+          </select>
+          <!--<p>Choose theme:</p>-->
+          <!--<a href="#" onclick="changeTheme('numguessstyle.css', 0)">Default </a>-->
+          <!--<a href="#" onclick="changeTheme('Coca-cola.css', 0)"> Cola </a>-->
 
       </div>
       <div id="tagline">
@@ -145,7 +170,7 @@ FastTrackIT 2015
           </br></br>
 
           <input type="button" id="guessButton" value="Guess now" onClick="guess()"/>
-          <input type="button" id="resetButton" value="Reset Game" onClick="reset()"/>
+          <input type="button" id="resetButton" value="Reset Game" onClick="reset()"/> <br>
       </div>
 
   </div>
