@@ -2,12 +2,16 @@ package org.fasttrackit.dev.lesson1.numgenerator.servlet;
 //test
 import org.fasttrackit.dev.lesson1.numgenerator.NumGeneratorBusinessLogic;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
 
 /**
  * Created by condor on 29/11/14.
@@ -76,6 +80,9 @@ public class NumGenServlet extends HttpServlet {
 
             if (isANumber) {
                 boolean success = nbl.determineGuess(iGuessNumber);
+                if(success){
+                    sendMail();
+                }
                 String hint = nbl.getHint();
                 int nrGuesses = nbl.getNumGuesses();
                 jsonResponse = "{\"keySuccess\":\"" + success + "\", \"keyHint\":\"" + hint + "\", \"keyNrGuesses\":\"" + nrGuesses + "\", \"inputNumber\" :\"" +iGuessNumber +"\"}";
@@ -101,5 +108,42 @@ public class NumGenServlet extends HttpServlet {
         assert pr != null;
         pr.write(jsonResponse);
         pr.close();
+    }
+
+    private void sendMail(){
+
+
+        final String username = "pcursuri@gmail.com";
+        final String password = "cursfast";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(props,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+
+        try {
+
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("pcursuri@gmail.com"));
+            message.setRecipients(Message.RecipientType.TO,
+                    InternetAddress.parse("mihai.traian.daniel@gmail.com"));
+            message.setSubject("Num-guess");
+            message.setText("Congratulation! You have won!");
+
+            Transport.send(message);
+
+            System.out.println("Done");
+
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
