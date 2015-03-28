@@ -1,4 +1,4 @@
-<!--se vede??-->
+
 <!-- didactic purposes
 
 Some items are intentionally not optimized or not coded in the right way
@@ -13,9 +13,6 @@ FastTrackIT 2015
   <head>
     <title>Our first Lab</title>
       <meta charset="utf-8"/>
-     <!--<link href="numguessstyle.css" rel="stylesheet"  type="text/css"/> -->
-
-
       <link href="numguessstyle.css" rel="stylesheet" type="text/css"/>
 
     <script language="JavaScript">
@@ -34,11 +31,16 @@ FastTrackIT 2015
         }
 
          function guess(){
+             var number = document.getElementById("number").value;
+             if(number<1||number>10){
+                 window.alert("Choose a number between 1 and 10!")
+             } else {
              xmlHttp = new XMLHttpRequest();
              xmlHttp.onreadystatechange=callback;
              var url ="NumGenServlet"+"?requestGuessNumber="+document.getElementById("number").value;
              xmlHttp.open("GET",url,true);
              xmlHttp.send();
+             }
          }
 
         function guessLink(givenValue) {
@@ -136,13 +138,10 @@ FastTrackIT 2015
               <option value="default">Default</option>
               <option value="cola">Coca-Cola</option>
           </select>
-          <!--<p>Choose theme:</p>-->
-          <!--<a href="#" onclick="changeTheme('numguessstyle.css', 0)">Default </a>-->
-          <!--<a href="#" onclick="changeTheme('Coca-cola.css', 0)"> Cola </a>-->
 
       </div>
       <div id="tagline">
-          <p class="default">Welcome to our first Lesson !</p>
+          <p class="default">Welcome to our Gambling Application !</p>
       </div>
   </div>
   <div id="navigation">
