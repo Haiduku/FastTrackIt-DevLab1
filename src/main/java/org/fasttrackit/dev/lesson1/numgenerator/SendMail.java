@@ -10,6 +10,24 @@ import java.util.Properties;
  */
 public class SendMail implements Runnable{
 
+
+    private int numberOfTries;
+    private int iguessNumber;
+
+    public void setNumberOfTries(int numberOfTries) {
+        this.numberOfTries = numberOfTries;
+    }
+
+    public void setIguessNumber(int iguessNumber) {
+        this.iguessNumber = iguessNumber;
+    }
+
+    public SendMail(int tries, int guessedNumber){
+        setIguessNumber(guessedNumber);
+        setNumberOfTries(tries);
+    }
+
+
     public void run(){
 
         final String username = "pcursuri@gmail.com";
@@ -35,7 +53,7 @@ public class SendMail implements Runnable{
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse("mihai.traian.daniel@gmail.com"));
             message.setSubject("Num-guess");
-            message.setText("Congratulation! You have won!");
+            message.setText("Congratulation! You won! \nYou guessed the number " +iguessNumber+ " after " +numberOfTries+ " tries.");
 
             Transport.send(message);
 
