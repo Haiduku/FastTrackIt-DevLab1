@@ -80,9 +80,10 @@ public class NumGenServlet extends HttpServlet {
             }
 
             if (isANumber) {
-                String hint = nbl.getHint();
-                int nrGuesses = nbl.getNumGuesses();
                 boolean success = nbl.determineGuess(iGuessNumber);
+                int nrGuesses = nbl.getNumGuesses();
+                String hint = nbl.getHint();
+
                 if(success){
                     SendMail sendMail = new SendMail(nrGuesses, iGuessNumber);
                     Thread thread = new Thread(sendMail);
