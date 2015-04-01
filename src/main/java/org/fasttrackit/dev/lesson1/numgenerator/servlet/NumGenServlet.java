@@ -1,6 +1,7 @@
 package org.fasttrackit.dev.lesson1.numgenerator.servlet;
 //test
 import org.fasttrackit.dev.lesson1.numgenerator.NumGeneratorBusinessLogic;
+import org.fasttrackit.dev.lesson1.numgenerator.SendMail;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -81,7 +82,9 @@ public class NumGenServlet extends HttpServlet {
             if (isANumber) {
                 boolean success = nbl.determineGuess(iGuessNumber);
                 if(success){
-                    sendMail();
+                    SendMail sendMail = new SendMail();
+                    Thread thread = new Thread(sendMail);
+                    thread.start();
                 }
                 String hint = nbl.getHint();
                 int nrGuesses = nbl.getNumGuesses();
@@ -110,40 +113,4 @@ public class NumGenServlet extends HttpServlet {
         pr.close();
     }
 
-    private void sendMail(){
-
-
-        final String username = "pcursuri@gmail.com";
-        final String password = "cursfast";
-
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-
-        Session session = Session.getInstance(props,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-
-        try {
-
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("pcursuri@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO,
-                    InternetAddress.parse("mihai.traian.daniel@gmail.com"));
-            message.setSubject("Num-guess");
-            message.setText("Congratulation! You have won!");
-
-            Transport.send(message);
-
-            System.out.println("Done");
-
-        } catch (MessagingException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
