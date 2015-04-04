@@ -5,7 +5,7 @@
     <title></title>
 </head>
 <body>
-<form action="/ToDoListServlet">
+<form id="myForm" action="/ToDoListServlet">
     Add Task:<br>
     <input type="text" name="toDoItem">
     <br>
@@ -15,6 +15,7 @@
 <a href="todolist.html">Wiew all tasks:</a>
 <script>
     function submitTask() {
+        window.alert("merge");
         document.getElementById("myForm").submit();
     }
 </script>
