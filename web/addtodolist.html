@@ -9,13 +9,12 @@
     Add Task:<br>
     <input  id="task" type="text" name="toDoItem">
     <br>
-    <input type="button" onclick="submitTask()"/>
+    <input type="button" onclick="submitTask()" value="Save"/>
 </form>
 <br/>
 <a href="todolist.html">Wiew all tasks:</a>
 <script type="text/javascript" language="JavaScript">
     function submitTask() {
-        window.alert("merge");
         xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange=callback;
         var url ="ToDoListServlet"+"?toDoItem="+document.getElementById("task").value;
