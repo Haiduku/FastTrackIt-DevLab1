@@ -9,9 +9,14 @@
     Add Task:<br>
     <input type="text" name="toDoItem">
     <br>
-    <input type="submit"/>
+    <input type="button" onclick="submitTask()"/>
 </form>
 <br/>
 <a href="todolist.html">Wiew all tasks:</a>
+<script>
+    function submitTask() {
+        document.getElementById("myForm").submit();
+    }
+</script>
 </body>
 </html>
