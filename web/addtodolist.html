@@ -19,7 +19,7 @@
 //        var task = document.getElementById("task").value;
             xmlHttp = new XMLHttpRequest();
             xmlHttp.onreadystatechange=callback;
-            var url ="ToDoListServlet"+"toDoItem"+document.getElementById("task").value;
+            var url ="ToDoListServlet"+"?toDoItem="+document.getElementById("task").value;
             xmlHttp.open("GET",url,true);
             xmlHttp.send();
     }
